@@ -55,12 +55,16 @@
 
   <script src="carousel.min.js"></script>
   <script>
-    Carousel({
+    const carousel = Carousel({
       container: '.carousel', /* mandatory option */
       items: '.carousel-item', /* mandatory option */
       controls: '.carousel-controls',
       controlsText: ["<i class='fas fa-chevron-left'></i>", "<i class='fas fa-chevron-right'></i>"],
     })
+
+    // Move the carousel with the JS code
+    // carousel.next()
+    // carousel.previous()
 
     /* Another Example: */
     /*

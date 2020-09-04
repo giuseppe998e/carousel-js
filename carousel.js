@@ -21,6 +21,8 @@ const Carousel = function(params) {
   // ---------------------------------------------
   // Private Constants
   // ---------------------------------------------
+  const INSTANCE = {}
+
   const CAROUSEL = (() => {
     if (typeof params.container !== 'string') {
       throw 'The "container" option must be an ID or class name!'
@@ -231,6 +233,13 @@ const Carousel = function(params) {
   }
 
   // ---------------------------------------------
+  // Public Methods
+  // ---------------------------------------------
+  INSTANCE.previous = () => setState('previous', getState())
+
+  INSTANCE.next = () => setState('next', getState())
+
+  // ---------------------------------------------
   // Main Function
   // ---------------------------------------------
   if (!setInitialState()){
@@ -243,5 +252,7 @@ const Carousel = function(params) {
   setTouchListener()
 
   setAutoplay()
+
+  return INSTANCE;
 }
 
