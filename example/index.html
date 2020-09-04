@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simple Carousel</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" >
+  <link rel="stylesheet" href="carousel.min.css" >
+</head>
+<body>
+  
+  <div class="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item">
+        <img class="carousel-item-img" src="https://picsum.photos/id/101/300/300" />
+      </div>
+      <div class="carousel-item">
+        <img class="carousel-item-img" src="https://picsum.photos/id/102/300/300" />
+      </div>
+      <div class="carousel-item">
+        <img class="carousel-item-img" src="https://picsum.photos/id/103/300/300" />
+      </div>
+      <div class="carousel-item">
+        <img class="carousel-item-img" src="https://picsum.photos/id/104/300/300" />
+      </div>
+      <div class="carousel-item">
+        <img class="carousel-item-img" src="https://picsum.photos/id/106/300/300" />
+      </div>
+      <div class="carousel-item">
+        <img class="carousel-item-img" src="https://picsum.photos/id/107/300/300" />
+      </div>
+      <div class="carousel-item">
+        <img class="carousel-item-img" src="https://picsum.photos/id/108/300/300" />
+      </div>
+      <div class="carousel-item">
+        <img class="carousel-item-img" src="https://picsum.photos/id/109/300/300" />
+      </div>
+      <div class="carousel-item">
+        <img class="carousel-item-img" src="https://picsum.photos/id/110/300/300" />
+      </div>
+      <div class="carousel-item">
+        <img class="carousel-item-img" src="https://picsum.photos/id/111/300/300" />
+      </div>
+      <div class="carousel-item">
+        <img class="carousel-item-img" src="https://picsum.photos/id/112/300/300" />
+      </div>
+      <div class="carousel-item">
+        <img class="carousel-item-img" src="https://picsum.photos/id/113/300/300" />
+      </div>
+    </div>
+    <div class="carousel-controls"></div>
+  </div>
+
+
+  <script src="carousel.min.js"></script>
+  <script>
+    Carousel({
+      container: '.carousel', /* mandatory option */
+      items: '.carousel-item', /* mandatory option */
+      controls: '.carousel-controls',
+      controlsText: ["<i class='fas fa-chevron-left'></i>", "<i class='fas fa-chevron-right'></i>"],
+    })
+
+    /* Another Example: */
+    /*
+    Carousel({
+      container: '.carousel',
+      items: '.carousel-item',
+      controls: false,
+      autoplay: 3600
+    }); 
+    */
+  </script>
+
+</body>
+</html>
+
+
+
+
+

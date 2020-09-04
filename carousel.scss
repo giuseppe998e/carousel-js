@@ -1,0 +1,110 @@
+/**
+ * Copyright (C) 2020 Giuseppe Eletto
+ * 
+ * "Carousel.js" is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * "Carousel.js" is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with "Carousel.js". If not, see <http://www.gnu.org/licenses/>.
+ */
+ 
+.carousel {
+  max-width: 750px;
+  height: 400px;
+  position: relative;
+  display: block;
+
+  .carousel-inner {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin: 0 auto;
+
+    .carousel-item {
+      width: 150px;
+      height: 150px;
+      position: absolute;
+      opacity: 0;
+      transition: all 0.3s ease-in-out;
+      z-index: -1;
+      pointer-events: none;
+      user-select: none;
+      left: 15%;
+      transform: translateX(-50%);
+
+      &-selected {
+        width: 300px;
+        height: 300px;
+        box-shadow: 0 0 30px rgba(255, 255, 255, 0.6), 0 0 60px rgba(255, 255, 255, 0.45), 0 0 110px rgba(255, 255, 255, 0.25), 0 0 100px rgba(255, 255, 255, 0.1);
+        opacity: 1;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 2;
+      }
+
+      &-previous,
+      &-next {
+        width: 200px;
+        height: 200px;
+        opacity: 1;
+        z-index: 1;
+      }
+
+      &-previous {
+        left: 30%;
+        transform: translateX(-50%);
+      }
+
+      &-next {
+        left: 70%;
+        transform: translateX(-50%);
+      }
+
+      &-img {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        object-fit: cover;
+        object-position: center;
+      }
+    }
+  }
+
+  .carousel-controls {
+    position: absolute;
+    display: flex;
+    top: 50%;
+    left: 0;
+    right: 0;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+
+    @media (max-width: 767.98px) {
+      display: none;
+    }
+
+    &-previous,
+    &-next {
+      border: 0;
+      cursor: pointer;
+      font-size: 50px;
+      background-color: transparent;
+      color: rgba(0, 0, 0, .75);
+      padding: 0;
+
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+}
