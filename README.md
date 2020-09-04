@@ -1,5 +1,4 @@
-# A simple Carousel written in JS
-
+# Another Carousel script
 This is a simple image carousel written in javascript, the CSS style code can, and must, be fixed and improved.
 My knowledge of CSS is basic therefore any contribution to improve its visual aspect (css) (such as the one not visible (js)) is welcome.
 
