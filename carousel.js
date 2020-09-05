@@ -253,6 +253,6 @@ const Carousel = function(params) {
     setAutoplay()
   }
 
-  return INSTANCE;
+  return INSTANCE
 }
 
