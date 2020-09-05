@@ -222,7 +222,7 @@ const Carousel = function(params) {
 
     CAROUSEL.addEventListener('touchend', e => {
       const distX = e.changedTouches[0].pageX - startX
-      setState(distX < 0 ? 'next' : 'previous', getState)
+      setState(distX < 0 ? 'next' : 'previous', getState())
       e.preventDefault()
     }, false)
   }
