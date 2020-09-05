@@ -96,16 +96,15 @@ const Carousel = function(params) {
   // ---------------------------------------------
   const setInitialState = () => {
     const itemsLength = ITEMS.length
-    const middleItem = Math.floor((itemsLength - 1) / 2)
 
     ITEMS.forEach((item, index) => item.setAttribute('data-index', index))
-    ITEMS[middleItem].classList.add(`${ITEM_CLASSNAME}-selected`)
+    ITEMS[0].classList.add(`${ITEM_CLASSNAME}-selected`)
     if (itemsLength == 1) {
       return false
     }
 
-    ITEMS[modulo(middleItem - 1, itemsLength)].classList.add(`${ITEM_CLASSNAME}-previous`)
-    ITEMS[modulo(middleItem + 1, itemsLength)].classList.add(`${ITEM_CLASSNAME}-next`)
+    ITEMS[modulo(-1, itemsLength)].classList.add(`${ITEM_CLASSNAME}-previous`)
+    ITEMS[modulo(1, itemsLength)].classList.add(`${ITEM_CLASSNAME}-next`)
 
     return true
   }
@@ -115,21 +114,19 @@ const Carousel = function(params) {
     selected.classList.remove(`${ITEM_CLASSNAME}-selected`)
     next.classList.remove(`${ITEM_CLASSNAME}-next`)
 
-    if (direction == 'next') {
-      selected.classList.add(`${ITEM_CLASSNAME}-previous`)
-      next.classList.add(`${ITEM_CLASSNAME}-selected`)
+    let prevOrNext = next;
+    let selTarget = 'previous';
+    
+    if (direction > 0) { // Next
       afterNext.classList.add(`${ITEM_CLASSNAME}-next`)
-    }
-    
-    else if (direction == 'previous') {
+    } else if (direction < 0) { // Prev
+      prevOrNext = previous
+      selTarget = 'next'
       beforePrev.classList.add(`${ITEM_CLASSNAME}-previous`)
-      previous.classList.add(`${ITEM_CLASSNAME}-selected`)
-      selected.classList.add(`${ITEM_CLASSNAME}-next`)
     }
     
-    else {
-      console.log(`Carousel: setState() -> Direction unknown! (Value: ${direction})`)
-    }
+    prevOrNext.classList.add(`${ITEM_CLASSNAME}-selected`)
+    selected.classList.add(`${ITEM_CLASSNAME}-${selTarget}`)
   }
 
   const getState = () => {
@@ -153,7 +150,7 @@ const Carousel = function(params) {
 
   const setAutoplay = () => {
     if (AUTOPLAY > 0) {
-      setInterval(() => setState('next', getState()), AUTOPLAY)
+      setInterval(() => setState(1, getState()), AUTOPLAY)
     }
   }
 
@@ -171,8 +168,8 @@ const Carousel = function(params) {
     previousBtn.insertAdjacentHTML('beforeend', CONTROLS_TEXT[0])
     nextBtn.insertAdjacentHTML('beforeend', CONTROLS_TEXT[1])
 
-    previousBtn.addEventListener('click', () => setState('previous', getState()), false)
-    nextBtn.addEventListener('click', () => setState('next', getState()), false)
+    previousBtn.addEventListener('click', () => setState(-1, getState()), false)
+    nextBtn.addEventListener('click', () => setState(1, getState()), false)
   }
   
   const setMouseListener = () => {
@@ -194,19 +191,13 @@ const Carousel = function(params) {
     CAROUSEL.addEventListener('mouseup', e => {
       if (!drag) return
       const distX = e.pageX - clickX
-
-      if (distX < -30) {
-        setState('next', getState())
-      } else if (distX > 30) {
-        setState('previous', getState())
-      }
-
+      setState(-distX, getState())
       e.preventDefault()
     }, false)
 
     // Mouse Wheel
     CAROUSEL.addEventListener('wheel', e => {
-      setState(e.deltaY > 0 ? 'next' : 'previous', getState())
+      setState(e.deltaY, getState())
       e.preventDefault()
     }, false)
   }
@@ -224,7 +215,7 @@ const Carousel = function(params) {
 
     CAROUSEL.addEventListener('touchend', e => {
       const distX = e.changedTouches[0].pageX - startX
-      setState(distX < 0 ? 'next' : 'previous', getState())
+      setState(-distX, getState())
       e.preventDefault()
     }, false)
   }
@@ -237,9 +228,9 @@ const Carousel = function(params) {
   // ---------------------------------------------
   // Public Methods
   // ---------------------------------------------
-  INSTANCE.previous = () => setState('previous', getState())
+  INSTANCE.previous = () => setState(-1, getState())
 
-  INSTANCE.next = () => setState('next', getState())
+  INSTANCE.next = () => setState(1, getState())
 
   // ---------------------------------------------
   // Main Function
