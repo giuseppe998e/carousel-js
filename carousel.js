@@ -103,7 +103,7 @@ const Carousel = function(params) {
     if (itemsLength == 1) {
       return false
     }
-    
+
     ITEMS[modulo(middleItem - 1, itemsLength)].classList.add(`${ITEM_CLASSNAME}-previous`)
     ITEMS[modulo(middleItem + 1, itemsLength)].classList.add(`${ITEM_CLASSNAME}-next`)
 
@@ -244,16 +244,14 @@ const Carousel = function(params) {
   // ---------------------------------------------
   // Main Function
   // ---------------------------------------------
-  if (!setInitialState()){
-    return
+  if (setInitialState()){
+    initControls()
+
+    setMouseListener()
+    setTouchListener()
+
+    setAutoplay()
   }
-
-  initControls()
-
-  setMouseListener()
-  setTouchListener()
-
-  setAutoplay()
 
   return INSTANCE;
 }
