@@ -100,8 +100,10 @@ const Carousel = function(params) {
 
     ITEMS.forEach((item, index) => item.setAttribute('data-index', index))
     ITEMS[middleItem].classList.add(`${ITEM_CLASSNAME}-selected`)
-    if (itemsLength == 1) return false
-
+    if (itemsLength == 1) {
+      return false
+    }
+    
     ITEMS[modulo(middleItem - 1, itemsLength)].classList.add(`${ITEM_CLASSNAME}-previous`)
     ITEMS[modulo(middleItem + 1, itemsLength)].classList.add(`${ITEM_CLASSNAME}-next`)
 
